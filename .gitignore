@@ -3,10 +3,10 @@
 *.png
 
 # Ignore specific folders completely (including the folders themselves)
-deck_03/
-deck_05/
-deck_07/
-deck_09/
+deck-03/
+deck-05/
+deck-07/
+deck-09/
 dobble_deck02_cards_55/
 dobble_deck03_cards_55/
 dobble_deck04_cards_55/
