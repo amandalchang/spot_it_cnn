@@ -8,6 +8,7 @@ deck-03/
 deck-05/
 deck-07/
 deck-09/
+manually-sorted-dobble-decks/
 dobble_deck01_cards_57/
 dobble_deck02_cards_55/
 dobble_deck03_cards_55/
@@ -19,6 +20,9 @@ dobble_deck08_cards_55/
 dobble_deck09_cards_55/
 dobble_deck10_cards_55/
 contour_output/
+
+# Ignore dataset zip
+manual-sort-dobble-decks.zip
 
 # Ignore specific files
 dobble_decks_readme.txt
