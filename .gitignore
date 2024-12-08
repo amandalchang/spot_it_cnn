@@ -3,10 +3,12 @@
 *.png
 
 # Ignore specific folders completely (including the folders themselves)
+deck-01/
 deck-03/
 deck-05/
 deck-07/
 deck-09/
+dobble_deck01_cards_57/
 dobble_deck02_cards_55/
 dobble_deck03_cards_55/
 dobble_deck04_cards_55/
@@ -16,6 +18,7 @@ dobble_deck07_cards_55/
 dobble_deck08_cards_55/
 dobble_deck09_cards_55/
 dobble_deck10_cards_55/
+contour_output/
 
 # Ignore specific files
 dobble_decks_readme.txt
