@@ -1,0 +1,26 @@
+# Ignore all TIFF and PNG files globally
+*.tiff
+*.png
+
+# Ignore specific folders completely (including the folders themselves)
+deck_03/
+deck_05/
+deck_07/
+deck_09/
+dobble_deck02_cards_55/
+dobble_deck03_cards_55/
+dobble_deck04_cards_55/
+dobble_deck05_cards_55/
+dobble_deck06_cards_55/
+dobble_deck07_cards_55/
+dobble_deck08_cards_55/
+dobble_deck09_cards_55/
+dobble_deck10_cards_55/
+
+# Ignore specific files
+dobble_decks_readme.txt
+dobble_symbols.txt
+dobble_card_symbol_mapping.txt
+
+# Ignore DS Store
+*.DS_Store
