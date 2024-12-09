@@ -1,6 +1,6 @@
 # Ignore all TIFF and PNG files globally
 *.tiff
-*.png
+*.PNG
 
 # Ignore specific folders completely (including the folders themselves)
 deck-01/
@@ -28,6 +28,7 @@ manual-sort-dobble-decks.zip
 dobble_decks_readme.txt
 dobble_symbols.txt
 dobble_card_symbol_mapping.txt
+model_amanda.pth
 
 # Ignore DS Store
 *.DS_Store
