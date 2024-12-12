@@ -18,7 +18,7 @@ def move_file(file_path, dest_folder):
 def sort_images():
     """Sort images into pre-existing folders."""
     input_folder = select_directory("Enter the path to the folder containing images")
-    output_folder = input_folder
+    output_folder = select_directory("Enter output directory")
     screw_ups_list = []
     
     image_files = [f for f in os.listdir(input_folder) if f.lower().endswith(".png")]
@@ -36,8 +36,8 @@ def sort_images():
         
         # Get folder name from user
         while True:
-            folder_name = input(f"Enter folder name for '{image_file}' (or 'skip' to skip): ").strip()
-            if folder_name.lower() == 'skip':
+            folder_name = input(f"Enter folder name for '{image_file}' (or 's' to skip): ").strip()
+            if folder_name.lower() == 's':
                 print(f"Skipping '{image_file}'.")
                 screw_ups_list.append(image_file)
                 break
