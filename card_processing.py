@@ -69,9 +69,10 @@ def display_card(image1, image2, card1_contour, card2_contour):
     image_rgb1 = cv2.cvtColor(image1, cv2.COLOR_BGR2RGB)
     image_rgb2 = cv2.cvtColor(image2, cv2.COLOR_BGR2RGB)
 
-    # Draw contours directly on the images
-    cv2.drawContours(image_rgb1, [card1_contour], -1, (0, 255, 0), thickness=2)
-    cv2.drawContours(image_rgb2, [card2_contour], -1, (0, 255, 0), thickness=2)
+    if card1_contour is not None and card2_contour is not None:
+        # Draw contours directly on the images
+        cv2.drawContours(image_rgb1, [card1_contour], -1, (0, 255, 0), thickness=2)
+        cv2.drawContours(image_rgb2, [card2_contour], -1, (0, 255, 0), thickness=2)
 
     # Create subplots
     fig, axs = plt.subplots(1, 2, figsize=(10, 5))
