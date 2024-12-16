@@ -10,13 +10,16 @@ import torchvision.transforms as transforms
 from torchvision.datasets import ImageFolder
 import torchvision.transforms as T
 import csv
+import sys
+
+sys.path.append("model_related")
 
 from model import transform, CNN1, CLASS_LABEL_DICT
 
 batch_size_input = 32
-model_weights_path = "test_new_file"
-train_loss_csv = "train_loss.csv"
-test_loss_csv = "test_loss.csv"
+model_weights_path = join("model_related", "test_new_file.pth")
+train_loss_csv = join("model_related", "train_loss.csv")
+val_loss_csv = join("model_related", "val_loss.csv")
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
@@ -115,7 +118,7 @@ optimizer = optim.Adam(model.parameters(), lr=0.0001)
 criterion = nn.CrossEntropyLoss()
 # Lists to store training and test losses
 train_losses = []
-test_losses = []
+val_losses = []
 
 num_epochs = 50
 
@@ -156,7 +159,7 @@ def train():
 
         # Average test loss for the epoch
         avg_test_loss = running_test_loss / len(test_loader)
-        test_losses.append(avg_test_loss)
+        val_losses.append(avg_test_loss)
 
     # Save the model's state_dict
     torch.save(model.state_dict(), model_weights_path)
@@ -167,7 +170,7 @@ def train():
         for item in train_losses:
             writer.writerow([item])
 
-    with open(test_loss_csv, "w", newline="") as f:
+    with open(val_loss_csv, "w", newline="") as f:
         writer = csv.writer(f)
-        for item in test_losses:
+        for item in val_losses:
             writer.writerow([item])
