@@ -224,7 +224,7 @@ def show_breakdown(confusion_matrix):
         col_labels = ["Predicted Positive", "Predicted Negative"]
 
         # Create a heatmap using seaborn
-        plt.figure(figsize=(8, 6))
+        plt.figure(figsize=(5, 3))
         sns.heatmap(
             matrix,
             annot=True,
