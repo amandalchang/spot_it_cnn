@@ -15,12 +15,24 @@ from PIL import Image
 from image_processing import contrast_enhancement, find_object_contours
 from model import transform, CLASS_LABEL_DICT
 
-# CLIP_LIMIT = 4.0
-# BINARY_THRESHOLD = 200
-# SYM_CARD_SIZE_RATIO = 1 / 20
-
 
 def get_icons(image, clip_limit, binary_threshold, sym_ratio, model):
+    """
+    Get the icons on a specific card
+
+    image: an open cv image of a spot-it card
+    clip_limit: a float that controls the level of contrast enhancement
+    sym_card_size_ratio: a float which controls the min size a symbol has to be
+        to qualify as an object. for example, 1/20 would mean the symbol is 1/20th
+        the size of the full card (this could be wrong lol)
+      binary_threshold: an integer binary threshold for the conversion to a binary
+        image from a grayscaled version of img
+
+    Returns:
+        icon_names: A list of strings that represent all the icons on the card
+        icon_contours: A list of contours which exceed the area threshold and are the
+        the direct children of the card outline
+    """
     enhanced_RGB = contrast_enhancement(image, clip_limit)
 
     # draw the smaller contours for visualization
@@ -65,6 +77,15 @@ def get_icons(image, clip_limit, binary_threshold, sym_ratio, model):
 
 
 def display_card(image1, image2, card1_contour, card2_contour):
+    """
+    Display two cards side by side and highlight the associated contour
+
+    Args:
+        image1: an open cv image of a spot-it card
+        image2: an open cv image of a  different spot-it card
+        card1_contour: the contour to be highligted on image1
+        card2_contour: the contour to be highlighted on image2
+    """
     # Convert images to RGB for matplotlib
     image_rgb1 = cv2.cvtColor(image1, cv2.COLOR_BGR2RGB)
     image_rgb2 = cv2.cvtColor(image2, cv2.COLOR_BGR2RGB)
