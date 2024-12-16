@@ -1,7 +1,10 @@
 import torch
+import numpy as np
 from collections import defaultdict
 import matplotlib.pyplot as plt
 import pandas as pd
+import seaborn as sns
+from model import CLASS_LABEL_DICT
 
 
 def show_loss_curves(train_loss_csv, test_loss_csv):
@@ -125,6 +128,34 @@ def calculate_confusion_matrix_details(confusion_matrix):
     return details
 
 
+def get_worst_performance(details):
+    """
+    Get the three worst performing icons and return their index value
+
+    Args:
+        details: A dictionary containing metrics for each class, returned from calculate_confusion_matrix_details
+    """
+    worst_performance = [0, 0, 0]
+    first = 0
+    second = 0
+    third = 0
+    for i in details:
+        metrics = details[i]
+        false_positives = metrics["FP"]
+        false_negatives = metrics["FN"]
+        total_wrong = false_positives + false_negatives
+        if total_wrong > first:
+            worst_performance[0] = i
+            first = total_wrong
+        elif total_wrong > second:
+            worst_performance[1] = i
+            second = total_wrong
+        elif total_wrong > third:
+            worst_performance[2] = i
+            third = total_wrong
+    return worst_performance
+
+
 def calculate_precision(confusion_matrix):
     """
     Calculate the precision for each class based on the confusion matrix.
@@ -165,3 +196,56 @@ def calculate_recall(confusion_matrix):
         recall = TP / (TP + FN) if (TP + FN) > 0 else 0
         recall_scores[class_index] = recall
     return recall_scores
+
+
+def show_breakdown(confusion_matrix):
+    """
+    Display the confusion matrices, precision, and recall of the three most error-prone icons
+
+    Args:
+        confusion_matrix (list): A 2D list representing the confusion matrix.
+    """
+    precision = calculate_precision(confusion_matrix)
+    recall = calculate_recall(confusion_matrix)
+    breakdown = calculate_confusion_matrix_details(confusion_matrix)
+
+    worst_performance = get_worst_performance(breakdown)
+    for i in worst_performance:
+        icon_name = CLASS_LABEL_DICT[i]
+        metrics = breakdown[i]
+
+        # Create the confusion matrix
+        matrix = np.array(
+            [[metrics["TP"], metrics["FP"]], [metrics["FN"], metrics["TN"]]]
+        )
+
+        # Define row and column labels
+        row_labels = ["Actual Positive", "Actual Negative"]
+        col_labels = ["Predicted Positive", "Predicted Negative"]
+
+        # Create a heatmap using seaborn
+        plt.figure(figsize=(8, 6))
+        sns.heatmap(
+            matrix,
+            annot=True,
+            fmt="d",
+            cmap="Greys",
+            xticklabels=col_labels,
+            yticklabels=row_labels,
+            cbar=False,
+            vmin=0,
+            vmax=0,
+            linewidths=1,
+            linecolor="black",
+        )
+
+        # Add labels and title
+        plt.xlabel("Predicted Labels")
+        plt.ylabel("Actual Labels")
+        plt.title(f"Confusion Matrix for {icon_name}")
+
+        # Display the heatmap
+        plt.show()
+        print(
+            f"Precision: {round(precision[i], 4) *100}% \nRecall: {round(recall[i], 4) * 100}%"
+        )
