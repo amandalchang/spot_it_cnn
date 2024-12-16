@@ -120,6 +120,17 @@ symbol_mapping = {
     57: "snowman"
 }
 
+SYMBOL_LIST = [
+    "do_not_enter", "target", "lightning", "clown", "sunglasses", "spider", 
+    "anchor", "tree", "web", "cat", "bomb", "lock", "hand", "apple", 
+    "ghost", "man", "car", "moon", "eye", "clock", "scissors", "dinosaur", 
+    "splat", "key", "dog", "pencil", "exclamation", "knight", "cactus", 
+    "dolphin", "candle", "zebra", "droplet", "leaf", "fire", "turtle", 
+    "skull", "lips", "heart", "question", "cheese", "sun", "ladybug", 
+    "snowflake", "treble", "ice", "igloo", "carrot", "lightbulb", "bird", 
+    "clover", "daisy", "bottle", "yin_yang", "mallet", "dragon", "snowman"
+]
+
 def extract_card_number(filename):
     """
     Extracts the card number from a filename in the format 'card**_' where * can
