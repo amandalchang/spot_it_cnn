@@ -28,7 +28,6 @@ manual-sort-dobble-decks.zip
 dobble_decks_readme.txt
 dobble_symbols.txt
 dobble_card_symbol_mapping.txt
-*.pth
 
 # Ignore DS Store
 *.DS_Store
