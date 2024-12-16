@@ -13,7 +13,7 @@ def contrast_enhancement(img, clipLimit):
 
     Args:
       img: a 3D array with BGR image data
-      clipLimit: a float **** lowkey i do not know what clipLimit is ****
+      clipLimit: a float that controls the level of contrast enhancement
     Returns:
       A contrast enhanced 3D array with RGB image data
     """
