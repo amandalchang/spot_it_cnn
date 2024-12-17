@@ -8,7 +8,9 @@ NOTE: You should not have to do any of this. `data.zip` already contains the dat
 
 The original dataset contains several decks from the game Spot-It! and can be found [here](https://www.kaggle.com/datasets/grouby/dobble-card-images/data). Because we want to train our model on the icons on the cards, and not the cards themselves, we have to do some image processing to extract the icons from the cards and save them. We use OpenCV to do this, and you can follow along with our process in `save_contours.ipynb`. 
 
-In order to extract all the icons on a card, we increase the contrast of the image. We then use OpenCV to find the contours (which are the icons) on the card. The functions to do this can be found in `image_processing.py`. `save_contours.ipynb` extracts all the icons on all the cards in a given deck. However, it does not sort them. Once we extracted all the contours, we had to manually sort them ourselves. `sorter.py` helped with this process by "game-ifying" it, allowing us to view an icon and type where it should go. The data should be sorted within the decks, looking something likes this.
+In order to extract all the icons on a card, we increase the contrast of the image. We then use OpenCV to find the contours (which are the icons) on the card. The functions to do this can be found in `image_processing.py`. `save_contours.ipynb` extracts all the icons on all the cards in a given deck. 
+![alt text](image_processing.png)
+However, it does not sort them. Once we extracted all the contours, we had to manually sort them ourselves. `sorter.py` helped with this process by "game-ifying" it, allowing us to view an icon and type where it should go. The data should be sorted within the decks, looking something likes this.
 ```
 
 └───deck-1
